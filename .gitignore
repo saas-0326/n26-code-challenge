@@ -2,4 +2,6 @@
 .classpath
 .settings
 
+.idea
 target/
+/gigaspaces/
