@@ -93,9 +93,10 @@ Example:
 * Run the first instance (might be with default values or specifying a port).
 * Run the second (or later) instance with a different port and specifying not to create a new space (will connect to the one created on the first instance):
 
+```bash
     $ java -Dserver.port=8080 -jar target/statistics-api-0.0.1-SNAPSHOT.jar
-
     $ java -Dserver.port=8090 -Dstatistics.space.create=false -jar target/statistics-api-0.0.1-SNAPSHOT.jar
+```
 
 ### Local Maven Repository ###
 
