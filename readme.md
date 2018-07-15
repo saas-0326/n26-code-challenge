@@ -97,10 +97,12 @@ Example:
 Since Giga Spaces dependencies are not publicly available in a maven repository (like maven central) and it has a huge importance in this project's solution, it was necessary to install the required dependencies in a local repository and thus, add it to the source code repository.
 If there is a problem building or deploying the project due to Giga Spaces dependencies not being found, please run the following 2 commands and it will install both dependencies on the local repository:
 
-    mvn org.apache.maven.plugins:maven-install-plugin:2.5.1:install-file -Dfile=lib/gs-openspaces-10.2.1-14000-RELEASE.jar \
+    mvn org.apache.maven.plugins:maven-install-plugin:2.5.1:install-file \
+    -Dfile=repo/com/gigaspaces/gs-openspaces/10.2.1-14000-RELEASE/gs-openspaces-10.2.1-14000-RELEASE.jar \
     -DgroupId=com.gigaspaces -DartifactId=gs-openspaces -Dpackaging=jar -Dversion=10.2.1-14000-RELEASE -DlocalRepositoryPath=repo
 
-    mvn org.apache.maven.plugins:maven-install-plugin:2.5.1:install-file -Dfile=lib/gs-runtime-10.2.1-14000-RELEASE.jar \
+    mvn org.apache.maven.plugins:maven-install-plugin:2.5.1:install-file \
+    -Dfile=repo/com/gigaspaces/gs-runtime/10.2.1-14000-RELEASE/gs-runtime-10.2.1-14000-RELEASE.jar \
     -DgroupId=com.gigaspaces -DartifactId=gs-runtime -Dpackaging=jar -Dversion=10.2.1-14000-RELEASE -DlocalRepositoryPath=repo
 
 ### Spring Boot ###
