@@ -52,6 +52,9 @@ If historical information was to be stored for ever, then the query should be mo
 
 The web layer consists of a single controller, that exposes both end points (create transaction & query statistics) with only field's formatting validations plus response status code and information.
 There is an isolated transaction model for the Web Layer with only the required information to make the requests, and at the persistency level the objects have more information.
+At the web layer, there are also 2 more end points to query for the service information and health. Its endpoints are:
+* GET /actuator/info - Service information
+* GET /actuator/health - Service Health
 
 ### Testing ###
 

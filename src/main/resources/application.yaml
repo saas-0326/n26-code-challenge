@@ -1,0 +1,49 @@
+##
+#   _____  _          _    _       _    _                        _____  _____ 
+#  / ____|| |        | |  (_)     | |  (_)                /\    |  __ \|_   _|
+# | (___  | |_  __ _ | |_  _  ___ | |_  _   ___  ___     /  \   | |__) | | |  
+#  \___ \ | __|/ _` || __|| |/ __|| __|| | / __|/ __|   / /\ \  |  ___/  | |  
+#  ____) || |_| (_| || |_ | |\__ \| |_ | || (__ \__ \  / ____ \ | |     _| |_ 
+# |_____/  \__|\__,_| \__||_||___/ \__||_| \___||___/ /_/    \_\|_|    |_____|
+##
+# STATISTICS API CONFIGURATIONS
+##
+statistics:
+  space:
+    create: true
+    name: bankTransactions
+
+##
+# LOGGING CONFIGURATION
+##
+logging:
+  level:
+    root: info
+    com.payu: info
+
+##
+# SPRING BOOT APP CONFIGURATION
+##
+server:
+  port: 8080
+endpoints:
+  actuator:
+    path: actuator
+  enabled: false
+  sensitive: true
+  health:
+    enabled: true
+    sensitive: false
+  info:
+    enabled: true
+    sensitive: false
+
+management:
+  context-path: /actuator
+  health:
+    defaults.enabled: false
+
+info:
+  project: N26 - Code Challenge
+  application: Statistics API
+  environment: Local
