@@ -39,6 +39,7 @@ Restful API to calculate real time statistics from the last 60 seconds of the pr
 ### Persistency Layer ###
 
 At the persistency level uses [Giga Spaces](https://www.gigaspaces.com/) as an In Memory Data Base, to store the required information from the transactions. Each time a transaction is written at the space, it is given a specific time to live (60 seconds starting from the transaction's time stamp) and when the expiration time comes, the transaction is removed from the space to avoid being included into the statistics.
+
 This project doesn't have a DataBase (except for the in memory) but it would be easy to connect it to a Data Base using any hihgly-accepted ORM.
 Historical information (more than 60 seconds) is not stored anywhere to avoid memory leaks, but if it was necessary, it would be easy to keep the transactions in the space forever or connect to a Data Base and store all the information both synchronously or asynchronously.
 
@@ -46,12 +47,15 @@ Historical information (more than 60 seconds) is not stored anywhere to avoid me
 
 At the service level, there is only 1 service (StatisticsService) in charge of validations and executing operations over the space. Since the business logic is not so complex, it doesn't make sense to have an isolated DAO layer.
 Since the space only keeps the 'alive' transactions in memory, the statistics are taken from all the transactions in the space when the query is made, and all the transactions' amounts are aggregated to calculate the required information.
+
 If historical information was to be stored for ever, then the query should be modified to look for only transactions from the last 60 seconds, and it would probably be a good idea to add a Space Index over the transaction's time stamp to make the query even faster.
 
 ### Web Layer ###
 
 The web layer consists of a single controller, that exposes both end points (create transaction & query statistics) with only field's formatting validations plus response status code and information.
+
 There is an isolated transaction model for the Web Layer with only the required information to make the requests, and at the persistency level the objects have more information.
+
 At the web layer, there are also 2 more end points to query for the service information and health. Its endpoints are:
 * GET /actuator/info - Service information
 * GET /actuator/health - Service Health
@@ -90,12 +94,14 @@ Example:
 * Run the second (or later) instance with a different port and specifying not to create a new space (will connect to the one created on the first instance):
 
     $ java -Dserver.port=8080 -jar target/statistics-api-0.0.1-SNAPSHOT.jar
+
     $ java -Dserver.port=8090 -Dstatistics.space.create=false -jar target/statistics-api-0.0.1-SNAPSHOT.jar
 
 ### Local Maven Repository ###
 
 Since Giga Spaces dependencies are not publicly available in a maven repository (like maven central) and it has a huge importance in this project's solution, it was necessary to install the required dependencies in a local repository and thus, add it to the source code repository.
-If there is a problem building or deploying the project due to Giga Spaces dependencies not being found, please run the following 2 commands and it will install both dependencies on the local repository:
+
+If there is a problem building or deploying the project due to Giga Spaces dependencies not being found, please copy the libraries in "repo" folder to the maven repository or run the following 2 commands and it will install both dependencies on the local repository:
 
     mvn org.apache.maven.plugins:maven-install-plugin:2.5.1:install-file \
     -Dfile=repo/com/gigaspaces/gs-openspaces/10.2.1-14000-RELEASE/gs-openspaces-10.2.1-14000-RELEASE.jar \
