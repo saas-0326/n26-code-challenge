@@ -14,7 +14,7 @@ This project contains the solution for the Java Code Challenge at N26.
 ### Relevant Dependencies ###
 
 * Spring-Boot - 1.4.3.RELEASE (Web Container & IOC)
-* GigaSpaces - 10.2.1-14000-RELEASE (In Memory Data Base)
+* GigaSpaces - 10.2.1-14000-RELEASE (In Memory Data Grid)
 * TestNG - 6.13.1 (Testing purposes)
 * EasyMock - 3.4 (Testing purposes)
 
@@ -38,9 +38,9 @@ Restful API to calculate real time statistics from the last 60 seconds of the pr
 
 ### Persistency Layer ###
 
-At the persistency level uses [Giga Spaces](https://www.gigaspaces.com/) as an In Memory Data Base, to store the required information from the transactions. Each time a transaction is written at the space, it is given a specific time to live (60 seconds starting from the transaction's time stamp) and when the expiration time comes, the transaction is removed from the space to avoid being included into the statistics.
+At the persistency level uses [Giga Spaces](https://www.gigaspaces.com/) as an In Memory Data Grid, to store the required information from the transactions. Each time a transaction is written at the space, it is given a specific time to live (60 seconds starting from the transaction's time stamp) and when the expiration time comes, the transaction is removed from the space to avoid being included into the statistics.
 
-This project doesn't have a DataBase (except for the in memory) but it would be easy to connect it to a Data Base using any hihgly-accepted ORM.
+This project doesn't have a DataBase (except for the in memory) but it would be easy to connect it to a Data Base using any highly-accepted ORM.
 Historical information (more than 60 seconds) is not stored anywhere to avoid memory leaks, but if it was necessary, it would be easy to keep the transactions in the space forever or connect to a Data Base and store all the information both synchronously or asynchronously.
 
 ### Service Layer ###

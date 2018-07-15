@@ -33,7 +33,7 @@ public class StatisticsService implements IStatisticsService {
 	private static final long DEFAULT_LEASE = 60_000;
 
 	/**
-	 * The In-Memory Database accessor
+	 * The In-Memory Data Grid accessor
 	 */
 	private final GigaSpace gigaSpace;
 

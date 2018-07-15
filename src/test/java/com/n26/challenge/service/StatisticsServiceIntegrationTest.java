@@ -18,7 +18,7 @@ import com.n26.challenge.api.model.StatisticsResult;
 import com.n26.challenge.model.Transaction;
 
 /**
- * Test class for {@link StatisticsService} deploying the in memory database.
+ * Test class for {@link StatisticsService} deploying the in memory data grid.
  *
  * @author Santiago Alzate S. (santiago.alzate@payulatam.com)
  * @version 1.0.0
